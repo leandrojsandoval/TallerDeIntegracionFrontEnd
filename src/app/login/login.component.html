@@ -1,0 +1,19 @@
+<div>
+    <h2>Iniciar Sesión</h2>
+    <form (ngSubmit)="login()">
+      <div>
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" name="username" [(ngModel)]="username">
+      </div>
+      <div>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password">
+      </div>
+      <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
+      <button type="submit">Iniciar Sesión</button>
+    </form> 
+  <div *ngIf="responseData">
+    <h2>Respuesta de la consulta GET:</h2>
+    <pre>{{ responseData | json }}</pre>
+  </div>
+  </div>

@@ -29,7 +29,36 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Mini Documentación
 
-Comandos Utilizados
+
+### Para agregar Angular CLI 16.2 a tu proyecto o a tu PC y verificar si está instalada, puedes seguir estos pasos:
+
+Instalar Angular CLI 16.2 en tu proyecto:
+Abre una terminal en la carpeta raíz de tu proyecto y ejecuta el siguiente comando:
+
+
+`npm install @angular/cli@16.2`
+
+Esto instalará Angular CLI 16.2 en tu proyecto, específicamente en la carpeta node_modules de tu proyecto.
+
+Instalar Angular CLI 16.2 globalmente en tu PC:
+Si deseas instalar Angular CLI 16.2 globalmente en tu PC para usarlo en cualquier proyecto, ejecuta el siguiente comando en tu terminal:
+
+
+`npm install -g @angular/cli@16.2`
+
+Esto instalará Angular CLI 16.2 globalmente en tu sistema.
+
+Verificar la versión de Angular CLI:
+Para verificar si Angular CLI está instalado correctamente y ver su versión, puedes ejecutar el siguiente comando en tu terminal:
+
+
+`ng version`
+
+Esto mostrará la versión de Angular CLI instalada tanto a nivel global como local (si está instalada en tu proyecto).
+
+Al seguir estos pasos, podrás instalar Angular CLI 16.2 en tu proyecto o en tu PC y verificar si está instalada correctamente. Recuerda que los comandos deben ejecutarse en una terminal o símbolo del sistema con acceso a Node.js y npm.
+
+# ###  Comandos Utilizados
 
 ## ng new <nombre_proyecto>: 
 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
+import { DataService } from '../../services/data/data.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +13,7 @@ export class LoginComponent {
   errorMessage = '';
   responseData: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private router:Router,private dataService: DataService) { }
 
   login() {
     this.authService.user(this.username, this.password)
@@ -20,6 +22,9 @@ export class LoginComponent {
           // Manejar la respuesta exitosa aquí
           console.log(data);
           this.responseData = data;
+           // Redirigir a la página de inicio
+          this.dataService.setResponseData(this.responseData);
+          this.router.navigate(['/home']);
           console.log("🚀 ~ LoginComponent ~ login ~ responseData:", this.responseData)
         },
         error => {

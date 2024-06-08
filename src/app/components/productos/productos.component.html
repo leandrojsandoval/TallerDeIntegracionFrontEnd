@@ -1,1 +1,26 @@
-<p>productos works!</p>
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Registrar Producto</h2>
+    <form (ngSubmit)="Guarda()">
+      <div class="form-group">
+        <label for="Codigo">Código:</label>
+        <input type="text" class="form-control" id="Codigo" name="Codigo" [(ngModel)]="Codigo" placeholder="Ingrese el código del producto">
+      </div>
+      <div class="form-group">
+        <label for="Descripcion">Descripción:</label>
+        <input type="text" class="form-control" id="Descripcion" name="Descripcion" [(ngModel)]="Descripcion" placeholder="Ingrese la descripción del producto">
+      </div>
+      <div class="form-group">
+        <label for="Stock">Stock:</label>
+        <input type="number" class="form-control" id="Stock" name="Stock" [(ngModel)]="Stock" placeholder="Ingrese la cantidad en stock">
+      </div>
+      <div class="form-group">
+        <label for="Precio">Precio:</label>
+        <input type="number" class="form-control" id="Precio" name="Precio" [(ngModel)]="Precio" placeholder="Ingrese el precio del producto">
+      </div>
+      <!-- <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="Activo" [(ngModel)]="Activo" name="Activo">
+        <label class="form-check-label" for="Activo">Activo</label>
+      </div> -->
+      <button type="submit" class="btn btn-primary btn-block">Guardar Producto</button>
+    </form>
+  </div>

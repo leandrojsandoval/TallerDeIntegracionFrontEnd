@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Lista de Productos</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Activo</th>
+            <th scope="col">Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of responseData">
+            <td>{{ producto.codigo }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>
+              <span class="badge" [ngClass]="{'badge-success': producto.activo, 'badge-danger': !producto.activo}">
+                {{ producto.activo ? 'Sí' : 'No' }}
+              </span>
+            </td>
+            <td>{{ producto.precio | currency:'ARS' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

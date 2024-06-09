@@ -1,0 +1,23 @@
+.notificacion {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    text-align: center;
+    animation: slideIn 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .notificacion.exito {
+    background-color: #dff0d8;
+    color: #3c763d;
+  }
+  
+  .notificacion.error {
+    background-color: #f2dede;
+    color: #a94442;
+  }
+  
+  /* @keyframes slideIn {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  } */

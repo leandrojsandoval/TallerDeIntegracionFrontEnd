@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -25,11 +26,30 @@ export class ProductoService {
   //     "activo": false,
   //     "precio": 1100
   // }
-    return this.http.post<any>(`${this.apiUrl}/productos`, producto );
+    return this.http.post<any>(`${this.apiUrl}/productos`, producto )
+    .pipe(
+      catchError(this.handleError)
+    );;
   }
  
  
   listar_productos( ) {
     return this.http.get<any>(`${this.apiUrl}/productos`);
+  }
+
+
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage: string;
+
+    if (error.status === 404) {
+      errorMessage = 'La ruta no se encuentra.';
+    } else if (error.status === 0) {
+      errorMessage = 'El servidor no está disponible.';
+    } else {
+      errorMessage = 'Ocurrió un error inesperado.';
+    }
+
+    return throwError(errorMessage);
   }
 }

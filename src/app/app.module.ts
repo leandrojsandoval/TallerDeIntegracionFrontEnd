@@ -13,6 +13,7 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { BuscarVentasComponent } from './components/buscar-ventas/buscar-ventas.component';
 import { RegistrarVentasComponent } from './components/registrar-ventas/registrar-ventas.component';
 import { ListarProductosComponent } from './components/listar-productos/listar-productos.component';
+import { NotificacionComponent } from './components/notificacion/notificacion.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ListarProductosComponent } from './components/listar-productos/listar-p
     ProductosComponent,
     BuscarVentasComponent,
     RegistrarVentasComponent,
-    ListarProductosComponent
+    ListarProductosComponent,
+    NotificacionComponent
   ],
   imports: [
     BrowserModule,

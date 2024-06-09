@@ -1,5 +1,7 @@
 import { Component,NgModule } from '@angular/core';
 import { ProductoService } from 'src/app/services/producto/producto.service';
+import { FormsModule } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-productos',
@@ -9,6 +11,10 @@ import { ProductoService } from 'src/app/services/producto/producto.service';
 
 
 export class ProductosComponent {
+
+  errorMessage: string | null = null;
+
+  successMessage: string | null = null;
 
   Codigo: string = '';
   Descripcion: string = '';
@@ -20,34 +26,39 @@ export class ProductosComponent {
   constructor(private productosService: ProductoService) { }
 
 
-  Guarda() {
 
-     const nuevoProducto = {
+  Guarda(form: NgForm): void {
+    if (form.invalid) {
+      console.log('Formulario inválido');
+      this.errorMessage = 'Formulario inválido';
+      return;
+    }
+
+    this.errorMessage = null;  // Resetea el mensaje de error antes de realizar la petición
+    this.successMessage = null; 
+    
+    const nuevoProducto = {
       codigo: this.Codigo,
       descripcion: this.Descripcion,
       stock: this.Stock,
       precio: this.Precio,
       activo: this.Activo
     };
-    console.log("🚀 ~ ProductosComponent ~ Guarda ~ Codigo:", this.Codigo,this.Precio,this.Descripcion)
-    this.productosService.crear_objetoProducto(
-      nuevoProducto).subscribe(
+
+    console.log("🚀 ~ ProductosComponent ~ Guarda ~ Codigo:", this.Codigo, this.Precio, this.Descripcion);
+
+    this.productosService.crear_objetoProducto(nuevoProducto).subscribe(
       data => {
         // Manejar la respuesta exitosa aquí
+        this.successMessage = 'Producto creado exitosamente';
         console.log(data);
-        // this.responseData = data;
-         // Redirigir a la página de inicio
-        // this.dataService.setResponseData(this.responseData);
-        // this.router.navigate(['/home']);
-        console.log("🚀 ~ LoginComponent ~ login ~ responseData:",data)
       },
       error => {
         // Manejar el error aquí
         console.error(error);
-        // this.errorMessage = 'Error al iniciar sesión. Por favor, verifica tus credenciales.';
+        this.errorMessage = error;  // Asigna el mensaje de error recibido del servicio
+       
       }
     );
-
-  }
-  
+}
 }

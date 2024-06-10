@@ -44,12 +44,16 @@ export class ProductoService {
 
     if (error.status === 404) {
       errorMessage = 'La ruta no se encuentra.';
-    } else if (error.status === 0) {
+    } 
+    else if (error.status === 0) {
       errorMessage = 'El servidor no está disponible.';
-    } else {
+    }
+    else if (error.status === 409) {
+      errorMessage = 'El Producto(Codigo) ya existe.';
+    } 
+    else {
       errorMessage = 'Ocurrió un error inesperado.';
     }
-
     return throwError(errorMessage);
   }
 }

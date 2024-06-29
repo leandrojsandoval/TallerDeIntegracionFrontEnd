@@ -37,6 +37,14 @@ export class ProductoService {
     return this.http.get<any>(`${this.apiUrl}/productos`);
   }
 
+  obtener_producto_by_codigo(codigo:string) {
+
+    return this.http.get<any>(`${this.apiUrl}/productos/${codigo}`)
+    .pipe(
+      catchError(this.handleError)
+    );;
+  }
+
 
 
   private handleError(error: HttpErrorResponse): Observable<never> {

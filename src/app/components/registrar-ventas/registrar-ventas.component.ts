@@ -102,7 +102,7 @@ onSubmit(): void {
       });
 
       this.ventaService.actualizarStockProductosVenta(this.venta);
-      // this.resetForm();
+      this.resetForm();
     },
     error => {
       alert('Error al registrar la venta');

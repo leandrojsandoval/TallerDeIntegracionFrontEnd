@@ -14,6 +14,11 @@ import { BuscarVentasComponent } from './components/buscar-ventas/buscar-ventas.
 import { RegistrarVentasComponent } from './components/registrar-ventas/registrar-ventas.component';
 import { ListarProductosComponent } from './components/listar-productos/listar-productos.component';
 import { NotificacionComponent } from './components/notificacion/notificacion.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +38,11 @@ import { NotificacionComponent } from './components/notificacion/notificacion.co
     AppRoutingModule,
     FormsModule,    
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

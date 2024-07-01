@@ -38,3 +38,8 @@
   max-height: 16rem;
   overflow-y: auto;
 }
+.botonera{
+display: flex !important;
+    align-content: space-between;
+    align-items: center;
+  }

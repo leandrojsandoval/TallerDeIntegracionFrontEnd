@@ -18,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { FilterNoStockPipe } from './pipes/filter-no-stock.pipe';
+import { FilterStockPipe } from './pipes/filter-stock.pipe';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { MatSortModule } from '@angular/material/sort';
     BuscarVentasComponent,
     RegistrarVentasComponent,
     ListarProductosComponent,
-    NotificacionComponent
+    NotificacionComponent,
+    FilterNoStockPipe,
+    FilterStockPipe
   ],
   imports: [
     BrowserModule,

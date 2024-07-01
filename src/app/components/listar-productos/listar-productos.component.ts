@@ -19,7 +19,22 @@ export class ListarProductosComponent implements OnInit {
       this.responseData = data;
       console.log("🚀 ~ ListarProductosComponent ~ this.productosService.listar_productos ~ responseData:",  this.responseData)
     });
-  }
+
+  
+  } 
+     agregarProducto():void
+     {
+
+     }
+     modificarProducto():void{
+
+     };
+     eliminarProducto() : void{
+
+     }
+     exportarListaProductos(): void{
+
+     };   
 
  
 }

@@ -22,6 +22,14 @@ export class BuscarVentasComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    const today = new Date();
+    const lastMonth = new Date(today);
+    lastMonth.setMonth(today.getMonth() - 1);
+
+    this.filterForm = this.fb.group({
+      startDate: [this.formatDate(lastMonth)],
+      endDate: [this.formatDate(today)]
+    });
   }
 
   onSubmit() {
@@ -36,4 +44,14 @@ export class BuscarVentasComponent implements OnInit {
     console.log(venta);
   }
 
+  exportarVentasActuales() : void{
+
+  }
+  exportarTodasVentas(): void{
+
+  };   
+
+  formatDate(date: Date): string {
+    return date.toISOString().split('T')[0];
+  }
 }

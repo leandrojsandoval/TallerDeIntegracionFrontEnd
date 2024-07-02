@@ -53,7 +53,16 @@ agregarProducto() {
   this.productoService.obtener_producto_by_codigo(this.codigoProducto).subscribe(
     producto => {
     if (producto) {
-   
+	if (this.cantidadProducto <=0){
+		alert('La cantidad ingresada no es valida');
+	}
+	else{
+   	if (producto.stock>0){
+	if (producto.stock<this.cantidadProducto){
+		this.cantidadProducto = producto.stock
+		alert('No hay stock suficiente para vender la cantidad solicitada, se modifico la cantidad automaticamente.');
+		
+	}
       const subtotal = this.cantidadProducto * producto.precio;
       this.venta.productos.push({
         id:this.generateId(),
@@ -65,7 +74,12 @@ agregarProducto() {
       this.venta.total+=subtotal,
       this.codigoProducto = '';
       this.cantidadProducto = 0;
+      } 
+      else{
+		  alert('Producto sin stock');
+	  }}
     } else {
+	//esto nunca se ejecuta 
       alert('Producto no encontrado');
     }
   });

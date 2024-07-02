@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
+import { Producto } from 'src/app/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -39,7 +40,7 @@ export class ProductoService {
 
   obtener_producto_by_codigo(codigo:string) {
 
-    return this.http.get<any>(`${this.apiUrl}/productos/${codigo}`)
+    return this.http.get<Producto>(`${this.apiUrl}/productos/${codigo}`)
     .pipe(
       catchError(this.handleError)
     );;

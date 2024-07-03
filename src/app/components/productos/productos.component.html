@@ -43,7 +43,8 @@
         <input type="checkbox" class="form-check-input" id="Activo" [(ngModel)]="Activo" name="Activo">
         <label class="form-check-label" for="Activo">Activo</label>
       </div> -->
-      <button type="submit" class="btn btn-primary btn-block">Guardar Producto</button>
+      <button type="submit" class="btn btn-primary btn-block">Guardar Producto</button> 
+      <button class="btn btn-primary btn-block" (click)="ir_a_listado()">Ir al listado de productos</button>
     </form>
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}

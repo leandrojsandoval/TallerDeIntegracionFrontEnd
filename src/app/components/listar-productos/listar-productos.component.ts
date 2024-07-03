@@ -1,5 +1,6 @@
 import { Component,  OnInit } from '@angular/core';
 import { ProductoService } from 'src/app/services/producto/producto.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-productos',
@@ -9,7 +10,7 @@ import { ProductoService } from 'src/app/services/producto/producto.service';
 export class ListarProductosComponent implements OnInit {
   responseData: any;
 
-  constructor(private productosService: ProductoService,
+  constructor(private productosService: ProductoService,private router: Router
   ) {
   
    }
@@ -24,7 +25,7 @@ export class ListarProductosComponent implements OnInit {
   } 
      agregarProducto():void
      {
-
+		this.router.navigate(['/Registrar_Productos']);
      }
      modificarProducto():void{
 

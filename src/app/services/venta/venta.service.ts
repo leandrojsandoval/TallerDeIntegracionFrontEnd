@@ -132,5 +132,10 @@ getVentasByDateRange(startDate: string, endDate: string): Observable<Venta[]> {
     
     return this.http.get<Venta[]>(`${this.apiUrl}/ventas/reportes`, { params });
   }
+
+
+listarLineas_venta():Observable<LineaDeVenta[]>{
+    return this.http.get<LineaDeVenta[]>(`${this.apiUrl}/lineasdeventa`);
+  }  
 }
 

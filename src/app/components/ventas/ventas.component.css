@@ -1,0 +1,55 @@
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .table-responsive {
+    margin-top: 20px;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .badge-success {
+    background-color: #28a745; /* Verde para éxito */
+    color: white; /* Texto blanco para buen contraste */
+    padding: 0.5em; /* Relleno para mejor apariencia */
+    border-radius: 0.25em; /* Bordes redondeados */
+  }
+  
+  .badge-danger {
+    background-color: #dc3545; /* Rojo para peligro */
+    color: white; /* Texto blanco para buen contraste */
+    padding: 0.5em; /* Relleno para mejor apariencia */
+    border-radius: 0.25em; /* Bordes redondeados */
+  }
+
+  /* Style for the sticky header */
+ .table-responsive > table thead {
+  position: sticky;
+  top: 0;
+  background-color: #fff; 
+  z-index: 2; 
+}
+
+.table-responsive > table tbody {
+  max-height: 16rem;
+  overflow-y: auto;
+}
+.botonera{
+display: flex !important;
+    align-content: space-between;
+    align-items: center;
+  }
+  .Totales{
+
+    /* color: green; */
+    font-size: 1.25rem;
+  }
+  .Totales label{
+
+    color: green;
+    font-size: 1.5rem;
+  }

@@ -34,7 +34,7 @@ export class ListarProductosComponent implements OnInit {
 
      }
      exportarListaProductos(): void{
-		const fileContent = this.productosService.tabla_productos_a_string(this.responseData);
+		const fileContent = this.productosService.tabla_productos_a_string(this.responseData, "Código,Descripción,Stock,Activo,Precio\n");
 	    const blob = new Blob([fileContent], { type: 'text/plain' });
 	    const url = window.URL.createObjectURL(blob);
 	
@@ -49,7 +49,7 @@ export class ListarProductosComponent implements OnInit {
 
      };   
      exportarListaProductosXLS(): void{
-		this.productosService.exportar_a_xlsx(this.responseData, 'lista-productos');
+		this.productosService.exportar_a_xlsx(this.responseData, 'lista-productos','Productos');
      }; 
 
  

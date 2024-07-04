@@ -64,7 +64,7 @@ agregarProducto() {
         acc.stock += curr.cantidad;
         return acc;
     }, { ...producto, stock: 0 });
-debugger
+// debugger
     if (productoEnLista && this.cantidadProducto > (producto.stock - productoEnLista.stock)) {
     this.cantidadProducto = producto.stock- productoEnLista.stock;
       if (this.cantidadProducto ==0){

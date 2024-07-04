@@ -48,11 +48,11 @@ export class ProductoService {
     );;
   }
 
-tabla_productos_a_string(data: any[]): string {
+tabla_productos_a_string(data: any[],cabecera:string): string {
 	
-    return "Código,Descripción,Stock,Activo,Precio\n"+data.map(row => Object.values(row).join(',')).join('\n');
+    return cabecera+data.map(row => Object.values(row).join(',')).join('\n');
   }
-exportar_a_xlsx(data: any[], fileName: string): void {
+exportar_a_xlsx(data: any[], fileName: string, nombreHoja: string): void {
     // Convertir los datos a una hoja de cálculo
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
     const workbook: XLSX.WorkBook = { Sheets: { 'Productos': worksheet }, SheetNames: ['Productos'] };

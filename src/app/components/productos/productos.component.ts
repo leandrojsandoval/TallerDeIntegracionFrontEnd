@@ -20,8 +20,8 @@ export class ProductosComponent {
 	Codigo: string = '';
 	Descripcion: string = '';
 	Stock: number = 0;
-	Precio: number = 0;
-	Activo: boolean = false;
+	Precio: number = 1;
+	Activo: boolean = true;
 
 
 	constructor(private productosService: ProductoService, private router: Router) { }

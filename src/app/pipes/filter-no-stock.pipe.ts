@@ -10,7 +10,7 @@ export class FilterNoStockPipe implements PipeTransform {
       return [];
     }
     // Filtrar productos con cantidad igual a 0 product.stock === 0
-    return products.filter(product => product.stock <100);
+    return products.filter(product => product.stock ==0);
   }
 
 }

@@ -58,11 +58,27 @@ agregarProducto() {
 	}
 	else{
    	if (producto.stock>0){
-	if (producto.stock<this.cantidadProducto){
-		this.cantidadProducto = producto.stock
-		alert('No hay stock suficiente para vender la cantidad solicitada, se modifico la cantidad automaticamente.');
-		
-	}
+
+    let productoEnLista: Producto = this.venta.productos.filter(x => x.producto.codigo == producto.codigo)
+    .reduce((acc, curr) => {
+        acc.stock += curr.cantidad;
+        return acc;
+    }, { ...producto, stock: 0 });
+debugger
+    if (productoEnLista && this.cantidadProducto > (producto.stock - productoEnLista.stock)) {
+    this.cantidadProducto = producto.stock- productoEnLista.stock;
+      if (this.cantidadProducto ==0){
+        alert('Producto sin stock' );
+        return;
+      }
+    alert('No hay stock suficiente para vender la cantidad solicitada, se modificó la cantidad automáticamente a ' + (producto.stock- productoEnLista.stock));
+    }
+    if (!productoEnLista && producto.stock<this.cantidadProducto){
+      this.cantidadProducto = producto.stock
+		  alert('No hay stock suficiente para vender la cantidad solicitada, se modifico la cantidad automaticamente a '+producto.stock);
+    }
+	
+    
       const subtotal = this.cantidadProducto * producto.precio;
       this.venta.productos.push({
         id:this.generateId(),
@@ -71,7 +87,7 @@ agregarProducto() {
         subtotal: subtotal,
         precioUnitario: producto.precio,
       });
-      this.venta.total+=subtotal,
+      this.venta.total+=subtotal;
       this.codigoProducto = '';
       this.cantidadProducto = 0;
       } 
@@ -130,8 +146,11 @@ onSubmit(): void {
 
       this.ventaService.actualizarStockProductosVenta(this.venta);
       this.resetForm();
+ 
+      this.successMessage="Venta registrada exitosamente"
     },
     error => {
+      this.errorMessage=error
       alert('Error al registrar la venta');
     }
   );

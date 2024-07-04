@@ -12,7 +12,7 @@
       <div class="form-group">
         <label for="Descripcion">Descripción:</label>
         <input type="text" class="form-control" id="Descripcion" name="Descripcion" [(ngModel)]="Descripcion" placeholder="Ingrese la descripción del producto"
-        required>
+        required [maxLength]="100">
          <div *ngIf="productForm.submitted && Descripcion.length > 100" class="text-danger">
           La descripción no puede superar los 100 caracteres.
         </div>
@@ -31,8 +31,8 @@
       <div class="form-group">
         <label for="Precio">Precio:</label>
         <input type="number" class="form-control" id="Precio" name="Precio" [(ngModel)]="Precio" placeholder="Ingrese el precio del producto"
-        min="0" required>
-        <div *ngIf="productForm.submitted && Precio < 0" class="text-danger">
+        min="1" required>
+        <div *ngIf="productForm.submitted && Precio < 1" class="text-danger">
           El precio no puede ser negativo.
         </div>
         <div *ngIf="productForm.submitted && Precio === null" class="text-danger">

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Producto } from 'src/app/models';
 import { environment } from 'src/environments/environment';
+import * as XLSX from 'xlsx';
+
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +48,35 @@ export class ProductoService {
     );;
   }
 
+tabla_productos_a_string(data: any[]): string {
+	
+    return "Código,Descripción,Stock,Activo,Precio\n"+data.map(row => Object.values(row).join(',')).join('\n');
+  }
+exportar_a_xlsx(data: any[], fileName: string): void {
+    // Convertir los datos a una hoja de cálculo
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+    const workbook: XLSX.WorkBook = { Sheets: { 'Productos': worksheet }, SheetNames: ['Productos'] };
+    
+    // Generar el archivo Excel
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Guardar el archivo
+    this.guardar_archivo_excel(excelBuffer, fileName);
+    }
+
+private guardar_archivo_excel(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: 'application/octet-stream' });
+    const url = window.URL.createObjectURL(data);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${fileName}.xlsx`;
+    document.body.appendChild(a);
+    a.click();
+    
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }
 
 
   private handleError(error: HttpErrorResponse): Observable<never> {

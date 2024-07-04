@@ -9,9 +9,11 @@
   
   .btn-block {
     margin-top: 20px;
+    margin-right: 20px; 
   }
 
   .error-message {
     color: red;
     margin-top: 10px;
   }
+  

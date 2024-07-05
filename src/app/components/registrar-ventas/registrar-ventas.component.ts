@@ -57,7 +57,19 @@ formatTime(date: Date): string{
   const formattedTime = `${currentHour}:${currentMinute}:${currentSecond}`;
   return formattedTime;
 }
+updateDateTime() {
+    const currentDate = new Date().toISOString().split('T')[0];
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours().toString().padStart(2, '0');
+    const currentMinute = currentTime.getMinutes().toString().padStart(2, '0');
+    const currentSecond = currentTime.getSeconds().toString().padStart(2, '0');
+    const formattedTime = `${currentHour}:${currentMinute}:${currentSecond}`;
 
+    this.miFormulario.patchValue({
+      Date: currentDate,
+      Time: formattedTime
+    });
+  }
 agregarProducto() {
   debugger
   if(this.codigoProducto==null ||this.codigoProducto==''){

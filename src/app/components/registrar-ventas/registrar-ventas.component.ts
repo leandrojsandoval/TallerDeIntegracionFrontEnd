@@ -71,7 +71,7 @@ updateDateTime() {
     });
   }
 agregarProducto() {
-  debugger
+  //debugger
   if(this.codigoProducto==null ||this.codigoProducto==''){
     this.errorMessage = 'Formulario inválido-Codigo de producto no ingresado';
     return;
@@ -161,14 +161,18 @@ calcularSubtotal(index: number): void {
 calcularTotal(): void {
   this.venta.total = this.venta.productos.reduce((acc, item) => acc + item.subtotal, 0);
 }
-
+getDateTimeString(): string {
+    const date = this.miFormulario.get('Date')?.value;
+    const time = this.miFormulario.get('Time')?.value;
+    return `${date}T${time}`;
+  }
 onSubmit(): void {
 
   this.errorMessage ='';
   //  this.venta.cliente = this.cliente;
   debugger
    this.venta.cliente = this.miFormulario.get('cliente')?.value;
-  this.venta.fecha = new Date( this.miFormulario.get('Date')?.value);
+  this.venta.fecha = new Date( this.getDateTimeString());
   this.cliente=this.venta.cliente;
   if(this.venta.cliente==null ||this.venta.cliente==''){
     this.errorMessage = 'Formulario inválido- Nombre de cliente obligatorio';

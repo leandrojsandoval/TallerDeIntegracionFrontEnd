@@ -37,7 +37,8 @@ constructor(private ventaService: VentaService,private productoService: Producto
   this.miFormulario = this.fb.group({
     cliente: [''],
     productos: this.fb.array([]),
-    Date: [this.formatDate(today)]
+    Date: [this.formatDate(today)],
+    Time:this.formatTime(today)
   });
 } 
 
@@ -48,6 +49,13 @@ ngOnInit(): void {
 
 formatDate(date: Date): string {
   return date.toISOString().split('T')[0];
+}
+formatTime(date: Date): string{
+  const currentHour = date.getHours().toString().padStart(2, '0');
+  const currentMinute = date.getMinutes().toString().padStart(2, '0');
+  const currentSecond = date.getSeconds().toString().padStart(2, '0');
+  const formattedTime = `${currentHour}:${currentMinute}:${currentSecond}`;
+  return formattedTime;
 }
 
 agregarProducto() {
@@ -187,7 +195,7 @@ onSubmit(): void {
 
 private resetForm(): void {
   this.cliente = '';
-  this.venta = { id: 0, fecha: new Date(), cliente: '', productos: [], total: 0 ,rechazada:false};
+  this.venta = { id: 0, fecha: new Date(), cliente: '', productos: [], total: 0 ,rechazada:false}; 
 }
 
 eliminarProducto(index: number) {

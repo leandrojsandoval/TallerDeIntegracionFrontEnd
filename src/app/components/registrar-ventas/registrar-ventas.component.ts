@@ -30,14 +30,25 @@ codigoform: string ="";
 clienteform: string = '';
 codigoProducto: string="";
 cantidadProducto: number=1;
+nombreProducto:string="";
 
+/*****************/
+// codigoProductoAuto: string = '';
+// nombreProductoAuto: string = '';
+
+onProductSelected(product: Producto) {
+  this.codigoProducto = product.codigo;
+  this.nombreProducto = product.descripcion;
+}
+/************/
 indexform=0;
 constructor(private ventaService: VentaService,private productoService: ProductoService,private fb: FormBuilder) { 
   const today = new Date();
   this.miFormulario = this.fb.group({
     cliente: [''],
     productos: this.fb.array([]),
-    Date: [this.formatDate(today)]
+    Date: [this.formatDate(today)],
+    nombreProducto:[""],
   });
 } 
 
@@ -97,6 +108,7 @@ agregarProducto() {
       this.venta.total+=subtotal;
       this.codigoProducto = '';
       this.cantidadProducto = 1;
+      this.nombreProducto="";
       } 
       else{
 		  alert('Producto sin stock');

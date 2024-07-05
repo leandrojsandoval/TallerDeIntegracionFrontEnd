@@ -5,6 +5,11 @@
     flex-direction: column;
     align-items: center;
 }
+
+.container {
+    margin-top: 20px;
+  }
+
 .Totales label{
 
     color: green;

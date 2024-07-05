@@ -48,6 +48,8 @@ constructor(private ventaService: VentaService,private productoService: Producto
     cliente: [''],
     productos: this.fb.array([]),
     Date: [this.formatDate(today)],
+    Time:this.formatTime(today),
+
     nombreProducto:[""],
   });
 } 
@@ -60,9 +62,28 @@ ngOnInit(): void {
 formatDate(date: Date): string {
   return date.toISOString().split('T')[0];
 }
+formatTime(date: Date): string{
+  const currentHour = date.getHours().toString().padStart(2, '0');
+  const currentMinute = date.getMinutes().toString().padStart(2, '0');
+  const currentSecond = date.getSeconds().toString().padStart(2, '0');
+  const formattedTime = `${currentHour}:${currentMinute}:${currentSecond}`;
+  return formattedTime;
+}
+updateDateTime() {
+    const currentDate = new Date().toISOString().split('T')[0];
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours().toString().padStart(2, '0');
+    const currentMinute = currentTime.getMinutes().toString().padStart(2, '0');
+    const currentSecond = currentTime.getSeconds().toString().padStart(2, '0');
+    const formattedTime = `${currentHour}:${currentMinute}:${currentSecond}`;
 
+    this.miFormulario.patchValue({
+      Date: currentDate,
+      Time: formattedTime
+    });
+  }
 agregarProducto() {
-  debugger
+  //debugger
   if(this.codigoProducto==null ||this.codigoProducto==''){
     this.errorMessage = 'Formulario inválido-Codigo de producto no ingresado';
     return;
@@ -73,6 +94,10 @@ agregarProducto() {
     if (producto) {
 	if (this.cantidadProducto <=0){
 		alert('La cantidad ingresada no es valida');
+	}
+	if (producto.activo == false){
+		alert('El producto no se encuentra activo.');
+		return;
 	}
 	else{
    	if (producto.stock>0){
@@ -113,11 +138,13 @@ agregarProducto() {
       else{
 		  alert('Producto sin stock');
 	  }}
-    } else {
-	//esto nunca se ejecuta 
-      alert('Producto no encontrado');
-    }
-  });
+    } 
+    
+  },
+  error => {
+      alert('Producto no encontrado.');
+    });
+  
 }
 private generateId(): number {
   return Math.floor(Math.random() * 1000000); // Genera un ID único basado en un número aleatorio
@@ -151,14 +178,18 @@ calcularSubtotal(index: number): void {
 calcularTotal(): void {
   this.venta.total = this.venta.productos.reduce((acc, item) => acc + item.subtotal, 0);
 }
-
+getDateTimeString(): string {
+    const date = this.miFormulario.get('Date')?.value;
+    const time = this.miFormulario.get('Time')?.value;
+    return `${date}T${time}`;
+  }
 onSubmit(): void {
 
   this.errorMessage ='';
   //  this.venta.cliente = this.cliente;
   debugger
    this.venta.cliente = this.miFormulario.get('cliente')?.value;
-  this.venta.fecha = new Date( this.miFormulario.get('Date')?.value);
+  this.venta.fecha = new Date( this.getDateTimeString());
   this.cliente=this.venta.cliente;
   if(this.venta.cliente==null ||this.venta.cliente==''){
     this.errorMessage = 'Formulario inválido- Nombre de cliente obligatorio';
@@ -199,7 +230,7 @@ onSubmit(): void {
 
 private resetForm(): void {
   this.cliente = '';
-  this.venta = { id: 0, fecha: new Date(), cliente: '', productos: [], total: 0 ,rechazada:false};
+  this.venta = { id: 0, fecha: new Date(), cliente: '', productos: [], total: 0 ,rechazada:false}; 
 }
 
 eliminarProducto(index: number) {

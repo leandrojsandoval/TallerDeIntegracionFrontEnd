@@ -30,11 +30,11 @@ export class VentasComponent implements OnInit  {
       this.LineasVentaproducto = data;
       this.LineasVentaproductoSinDuplicados= this.LineasVentaproducto.reduce((acumulador: LineaDeVenta[], valorActual: LineaDeVenta) => {
          this.Totales+=valorActual.subtotal;
-        const elementoYaExiste = acumulador.find(elemento => elemento.producto.codigo === valorActual.producto.codigo);
+        const elementoYaExiste = acumulador.find(elemento => elemento.producto.codigo.toUpperCase() === valorActual.producto.codigo.toUpperCase());
         if (elementoYaExiste) {
           return acumulador.map((elemento) => {
            
-            if (elemento.producto.codigo === valorActual.producto.codigo) {
+            if (elemento.producto.codigo.toUpperCase() === valorActual.producto.codigo.toUpperCase()) {
               
               return {
                 ...elemento,

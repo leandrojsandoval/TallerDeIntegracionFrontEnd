@@ -20,6 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { FilterNoStockPipe } from './pipes/filter-no-stock.pipe';
 import { FilterStockPipe } from './pipes/filter-stock.pipe';
+import { SearchPipe } from 'src/app/pipes/search.pipe';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -39,6 +40,7 @@ import { MatInputModule } from '@angular/material/input';
     NotificacionComponent,
     FilterNoStockPipe,
     FilterStockPipe,
+ 	SearchPipe,
     AutocompleteComponent
   ],
   imports: [

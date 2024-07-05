@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'Registrar_Productos', component: ProductosComponent },
   { path: 'Listar_productos', component: ListarProductosComponent },
   { path: 'Registrar_Ventas', component:RegistrarVentasComponent },
-  { path: 'Listar_ventas', component: VentasComponent}
+  { path: 'Recaudacion_por_producto', component: VentasComponent}
 
 ];
 

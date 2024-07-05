@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VentaService } from 'src/app/services/venta/venta.service';
 import { Venta,LineaDeVenta ,Producto} from 'src/app/models';
 import { ProductoService } from 'src/app/services/producto/producto.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 // src/app/models/venta.ts
 
 @Component({
@@ -25,11 +25,11 @@ miFormulario: FormGroup;
 
 successMessage: string | null = null;
 
-cantidadform:number=0;
+cantidadform:number=1;
 codigoform: string ="";
-
+clienteform: string = '';
 codigoProducto: string="";
-cantidadProducto: number=0;
+cantidadProducto: number=1;
 
 indexform=0;
 constructor(private ventaService: VentaService,private productoService: ProductoService,private fb: FormBuilder) { 
@@ -42,6 +42,7 @@ constructor(private ventaService: VentaService,private productoService: Producto
 } 
 
 
+
 ngOnInit(): void {
 }
 
@@ -50,6 +51,12 @@ formatDate(date: Date): string {
 }
 
 agregarProducto() {
+  debugger
+  if(this.codigoProducto==null ||this.codigoProducto==''){
+    this.errorMessage = 'Formulario inválido-Codigo de producto no ingresado';
+    return;
+  }
+
   this.productoService.obtener_producto_by_codigo(this.codigoProducto).subscribe(
     producto => {
     if (producto) {
@@ -89,7 +96,7 @@ agregarProducto() {
       });
       this.venta.total+=subtotal;
       this.codigoProducto = '';
-      this.cantidadProducto = 0;
+      this.cantidadProducto = 1;
       } 
       else{
 		  alert('Producto sin stock');
@@ -104,19 +111,24 @@ private generateId(): number {
   return Math.floor(Math.random() * 1000000); // Genera un ID único basado en un número aleatorio
 }
 
-obtenerProducto(codigo: string, index: number): void {
+// obtenerProducto(codigo: string, index: number): void {
+// debugger
+//   if(codigo==null ||codigo==''){
+//     this.errorMessage = 'Formulario inválido';
+//     return;
+//   }
 
-  this.productoService.obtener_producto_by_codigo(codigo).subscribe(
-    producto => {
-      this.venta.productos[index].producto = producto;
-    },
-    error => {
-      this.errorMessage=error;
-      alert('Producto no encontrado');
-      this.venta.productos[index].producto = { codigo: '', descripcion: '', precio: 0, stock: 0 ,activo:true};
-    }
-  );
-}
+//   this.productoService.obtener_producto_by_codigo(codigo).subscribe(
+//     producto => {
+//       this.venta.productos[index].producto = producto;
+//     },
+//     error => {
+//       this.errorMessage=error;
+//       alert('Producto no encontrado');
+//       this.venta.productos[index].producto = { codigo: '', descripcion: '', precio: 0, stock: 0 ,activo:true};
+//     }
+//   );
+// }
 
 calcularSubtotal(index: number): void {
   const item = this.venta?.productos[index];
@@ -129,10 +141,26 @@ calcularTotal(): void {
 }
 
 onSubmit(): void {
+
+  this.errorMessage ='';
   //  this.venta.cliente = this.cliente;
+  debugger
    this.venta.cliente = this.miFormulario.get('cliente')?.value;
   this.venta.fecha = new Date( this.miFormulario.get('Date')?.value);
+  this.cliente=this.venta.cliente;
+  if(this.venta.cliente==null ||this.venta.cliente==''){
+    this.errorMessage = 'Formulario inválido- Nombre de cliente obligatorio';
+    return;
+  }
 
+
+  if(this.venta.productos==null ||this.venta.productos.length==0){
+    this.errorMessage = 'Formulario inválido- No se registran productos ingresados';
+    console.log(this.errorMessage);
+    return;
+  }
+
+ 
   this.ventaService.crear_objetoVenta(this.venta).subscribe(
     data => {
       console.log("🚀 ~ RegistrarVentasComponent ~ onSubmit ~ data:", data);

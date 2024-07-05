@@ -10,24 +10,29 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Registrar_Ventas">Ventas</a>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Ventas
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/Registrar_Ventas">Registrar Ventas</a></li>
+                <li><a class="dropdown-item" href="/Buscar_Ventas">Reportes de Ventas</a></li>
+              </ul>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Reportes
+                Productos
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/Listar_productos">Listado de Productos</a></li>
-                <li><a class="dropdown-item" href="/Listar_ventas">Listado de Ventas</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="/Buscar_Ventas">Buscar Ventas</a></li>
-                <li><a class="dropdown-item" href="/Registrar_Productos">Registrar Productos</a></li>
-              </ul>
+               <li><a class="dropdown-item" href="/Listar_productos">Listado de Productos</a></li>
+               <li><a class="dropdown-item" href="/Registrar_Productos">Registrar Productos</a></li>
+               <li><a class="dropdown-item" href="/Recaudacion_por_producto">Recaudación por Producto</a></li>
+               </ul>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Administrar</a>
-            </li>
+            </li> -->
           </ul>
           
 

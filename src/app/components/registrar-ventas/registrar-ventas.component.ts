@@ -83,6 +83,10 @@ agregarProducto() {
 	if (this.cantidadProducto <=0){
 		alert('La cantidad ingresada no es valida');
 	}
+	if (producto.activo == false){
+		alert('El producto no se encuentra activo.');
+		return;
+	}
 	else{
    	if (producto.stock>0){
 

@@ -109,11 +109,13 @@ agregarProducto() {
       else{
 		  alert('Producto sin stock');
 	  }}
-    } else {
-	//esto nunca se ejecuta 
-      alert('Producto no encontrado');
-    }
-  });
+    } 
+    
+  },
+  error => {
+      alert('Producto no encontrado.');
+    });
+  
 }
 private generateId(): number {
   return Math.floor(Math.random() * 1000000); // Genera un ID único basado en un número aleatorio

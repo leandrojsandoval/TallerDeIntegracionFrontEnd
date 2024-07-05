@@ -2,13 +2,15 @@ import { Component,  OnInit } from '@angular/core';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-listar-productos',
   templateUrl: './listar-productos.component.html',
-  styleUrls: ['./listar-productos.component.css']
+  styleUrls: ['./listar-productos.component.css'],
 })
 export class ListarProductosComponent implements OnInit {
   responseData: any;
+  searchText: string = '';
 
   constructor(private productosService: ProductoService,private router: Router
   ) {

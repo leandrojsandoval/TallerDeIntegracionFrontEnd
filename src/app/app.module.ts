@@ -20,6 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { FilterNoStockPipe } from './pipes/filter-no-stock.pipe';
 import { FilterStockPipe } from './pipes/filter-stock.pipe';
+import { SearchPipe } from 'src/app/pipes/search.pipe';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { FilterStockPipe } from './pipes/filter-stock.pipe';
     ListarProductosComponent,
     NotificacionComponent,
     FilterNoStockPipe,
-    FilterStockPipe
+    FilterStockPipe,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Venta } from 'src/app/models';
 import { VentaService } from 'src/app/services/venta/venta.service';
 
@@ -14,7 +15,7 @@ export class BuscarVentasComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private ventaService: VentaService
+    private ventaService: VentaService,private router: Router
   ) {
     this.filterForm = this.fb.group({
       startDate: [''],
@@ -42,6 +43,7 @@ export class BuscarVentasComponent implements OnInit {
   verDetalle(venta: Venta) {
     // Implementar lógica para ver detalle de la venta
     console.log(venta);
+    this.router.navigate(['/Detalle_Venta/',venta.id]);
   }
 
   exportarVentasActuales() : void{

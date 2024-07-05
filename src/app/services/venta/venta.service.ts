@@ -11,6 +11,7 @@ import { Venta,LineaDeVenta,Producto } from 'src/app/models';
   providedIn: 'root'
 })
 export class VentaService {
+
   apiUrl = environment.apiUrl;
 
   private ventas: Venta[] = [];
@@ -136,6 +137,19 @@ getVentasByDateRange(startDate: string, endDate: string): Observable<Venta[]> {
 
 listarLineas_venta():Observable<LineaDeVenta[]>{
     return this.http.get<LineaDeVenta[]>(`${this.apiUrl}/lineasdeventa`);
-  }  
+  } 
+
+  getLineaVentaPorIdVenta(ventaId: any):Observable<LineaDeVenta[]> {
+  
+    return this.http.get<LineaDeVenta[]>(`${this.apiUrl}/lineasdeventa/${ventaId}`);
+} 
+ 
+
+getVentaPorIdVenta(ventaId: any):Observable<Venta> {
+  
+  return this.http.get<Venta>(`${this.apiUrl}/ventas/${ventaId}`);
+
+} 
 }
+
 

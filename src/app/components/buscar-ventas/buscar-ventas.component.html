@@ -33,7 +33,8 @@
         <td>{{ venta.fecha | date: 'short' }}</td>
         <td>{{ venta.cliente }}</td>
         <td>{{ venta.total | currency }}</td>
-        <td><button class="btn btn-info" (click)="verDetalle(venta)">Ver Detalle</button></td>
+        <td><a  class="btn btn-info" [routerLink]="['/Detalle_Venta', venta.id]" target="_blank">Ver Detalle de Venta</a></td>
+        <!-- <td><button class="btn btn-info" (click)="verDetalle(venta)">Ver Detalle</button></td> -->
       </tr>
     </tbody>
   </table>

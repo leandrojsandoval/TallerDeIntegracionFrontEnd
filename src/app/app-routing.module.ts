@@ -7,6 +7,7 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { RegistrarVentasComponent } from './components/registrar-ventas/registrar-ventas.component';
 import { VentasComponent } from './components/ventas/ventas.component';
 import { ListarProductosComponent } from './components/listar-productos/listar-productos.component';
+import { DetalleVentaComponent } from './components/detalle-venta/detalle-venta.component';
 
 const routes: Routes = [
 
@@ -17,8 +18,9 @@ const routes: Routes = [
   { path: 'Registrar_Productos', component: ProductosComponent },
   { path: 'Listar_productos', component: ListarProductosComponent },
   { path: 'Registrar_Ventas', component:RegistrarVentasComponent },
-  { path: 'Recaudacion_por_producto', component: VentasComponent}
-
+  { path: 'Recaudacion_por_producto', component: VentasComponent},
+  { path: 'Detalle_Venta/:id', component: DetalleVentaComponent}
+ 
 ];
 
 @NgModule({

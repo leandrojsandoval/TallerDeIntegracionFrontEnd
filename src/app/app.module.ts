@@ -25,6 +25,7 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { DetalleVentaComponent } from './components/detalle-venta/detalle-venta.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MatInputModule } from '@angular/material/input';
     FilterNoStockPipe,
     FilterStockPipe,
  	SearchPipe,
-    AutocompleteComponent
+    AutocompleteComponent,
+    DetalleVentaComponent
   ],
   imports: [
     BrowserModule,

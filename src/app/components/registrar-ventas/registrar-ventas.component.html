@@ -63,14 +63,15 @@
           </div>
 
           <div class="row">
-            <div class="col-md-12 ">
-              <div class="row"> 
+            <div class="row"> 
                 <div class="form-group col-md-10">  <!-- Campo de autocompletado -->
                 <app-autocomplete [(ngModel)]="nombreProducto" (productSelected)="onProductSelected($event)"></app-autocomplete>
                 </div>
               
 
               </div>
+            <div class="col-md-6 ">
+              
                 <div class="form-group col-md-3">
                 <input type="text" id="codigoProducto" class="form-control" [(ngModel)]="codigoProducto" name="codigoProducto"
                 [ngModelOptions]="{standalone: true}" disabled="" placeholder="Código" >
@@ -85,14 +86,13 @@
               
                 </div>
 
-                <button type="button" class="btn btn-primary" (click)="agregarProducto()">Agregar Producto</button>
+                <button type="button" class="btn btn-primary mt-4" (click)="agregarProducto()">Agregar Producto</button>
               </div>
            
-
             <div class="col-md-4 ">
               <div class="bonoteraregistrar Totales">  
                 <label for="cantidadProducto">Total a pagar: {{ venta.total|currency }}</label>     
-                <button type="submit" class="btn btn-success">Finalizar Venta</button>
+                <button type="submit" class="btn btn-success mt-4">Finalizar Venta</button>
               </div>
             
              </div>

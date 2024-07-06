@@ -97,4 +97,10 @@ private guardar_archivo_excel(buffer: any, fileName: string): void {
     }
     return throwError(errorMessage);
   }
+
+  desactivaProducto(id: string){
+    return this.http.delete<Producto>(`${this.apiUrl}/productos/${id}}`)
+  }
+  actualizarProducto(producto: Producto): Observable<Producto> {
+    return this.http.post<Producto>(`${this.apiUrl}/productos/actualizarProducto`, producto);}
 }

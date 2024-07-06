@@ -8,6 +8,7 @@ import { RegistrarVentasComponent } from './components/registrar-ventas/registra
 import { VentasComponent } from './components/ventas/ventas.component';
 import { ListarProductosComponent } from './components/listar-productos/listar-productos.component';
 import { DetalleVentaComponent } from './components/detalle-venta/detalle-venta.component';
+import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
 
 const routes: Routes = [
 
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'Listar_productos', component: ListarProductosComponent },
   { path: 'Registrar_Ventas', component:RegistrarVentasComponent },
   { path: 'Recaudacion_por_producto', component: VentasComponent},
-  { path: 'Detalle_Venta/:id', component: DetalleVentaComponent}
+  { path: 'Detalle_Venta/:id', component: DetalleVentaComponent},
+  { path: 'Editarproducto/:id', component: EditarProductoComponent}
  
 ];
 

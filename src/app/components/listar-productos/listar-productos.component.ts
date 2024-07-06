@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class ListarProductosComponent implements OnInit {
   responseData: any;
   searchText: string = '';
-
+  id_seleccionado: string = "";
   constructor(private productosService: ProductoService,private router: Router
   ) {
   
@@ -25,6 +25,21 @@ export class ListarProductosComponent implements OnInit {
 
   
   } 
+	
+  // Método para seleccionar un producto
+  selectProduct(id: string) {
+    if (this.id_seleccionado === id) {
+      this.id_seleccionado = "";
+    } else {
+      this.id_seleccionado = id;
+    }
+  }
+
+  // Método para verificar si un producto está seleccionado
+  isSelected(id: string) {
+    return this.id_seleccionado === id;
+  }
+
      agregarProducto():void
      {
 		this.router.navigate(['/Registrar_Productos']);
@@ -33,6 +48,7 @@ export class ListarProductosComponent implements OnInit {
 
      };
      eliminarProducto() : void{
+		
 
      }
      exportarListaProductos(): void{

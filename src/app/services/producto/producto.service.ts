@@ -20,6 +20,7 @@ export class ProductoService {
   crear( Codigo:string,Descripcion:string,Precio:number,Stock:Number,Activo:boolean) {
     return this.http.post<any>(`${this.apiUrl}/productos`, { Codigo,Descripcion,Precio,Stock,Activo });
   }
+  
 
   crear_objetoProducto(producto:any) {
   //   {

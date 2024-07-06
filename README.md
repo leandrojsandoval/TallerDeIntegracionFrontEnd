@@ -58,6 +58,11 @@ Esto mostrará la versión de Angular CLI instalada tanto a nivel global como lo
 
 Al seguir estos pasos, podrás instalar Angular CLI 16.2 en tu proyecto o en tu PC y verificar si está instalada correctamente. Recuerda que los comandos deben ejecutarse en una terminal o símbolo del sistema con acceso a Node.js y npm.
 
+`ng i` en el casopara instalar las dependencias
+
+`ng add @angular/material` instalacion de materia...
+
+
 # ###  Comandos Utilizados
 
 ## ng new <nombre_proyecto>: 

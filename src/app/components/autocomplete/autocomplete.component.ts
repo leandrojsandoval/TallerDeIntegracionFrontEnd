@@ -59,7 +59,7 @@ export class AutocompleteComponent  implements OnInit{
   }
 
   onProductSelected(event: any) {
-    const selectedProduct = this.allProducts.find(product => product.descripcion === event.option.value && product.activo===true);
+    const selectedProduct = this.allProducts.find(product => product.descripcion === event.option.value );
     if (selectedProduct) {
       this.productSelected.emit(selectedProduct);
     }

@@ -24,7 +24,7 @@ export class LoginComponent {
           this.responseData = data;
            // Redirigir a la página de inicio
           this.dataService.setResponseData(this.responseData);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/Registrar_Ventas']);
           console.log("🚀 ~ LoginComponent ~ login ~ responseData:", this.responseData)
         },
         error => {

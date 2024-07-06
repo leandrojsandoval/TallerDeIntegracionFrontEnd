@@ -33,7 +33,7 @@ export class AutocompleteComponent  implements OnInit{
     // });
     // Load all products once to improve performance
     this.productoService.listar_productos().subscribe((products: Producto[]) => {
-      this.allProducts = products;
+      this.allProducts = products.filter(prod=>prod.activo==true);
     });
   }
 
@@ -59,7 +59,7 @@ export class AutocompleteComponent  implements OnInit{
   }
 
   onProductSelected(event: any) {
-    const selectedProduct = this.allProducts.find(product => product.descripcion === event.option.value );
+    const selectedProduct = this.allProducts.find(product => product.descripcion === event.option.value && product.activo ===true);
     if (selectedProduct) {
       this.productSelected.emit(selectedProduct);
     }

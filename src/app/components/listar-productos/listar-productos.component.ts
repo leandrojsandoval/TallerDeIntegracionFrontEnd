@@ -35,7 +35,7 @@ export class ListarProductosComponent implements OnInit {
     }
   }
 
-  // Método para verificar si un producto está seleccionado
+  // Método para verificar si un producto está seleccionado 
   isSelected(id: string) {
     return this.id_seleccionado === id;
   }
@@ -48,7 +48,10 @@ export class ListarProductosComponent implements OnInit {
     
       this.router.navigate(['/Editarproducto/',this.id_seleccionado]);
      };
+
+
      eliminarProducto() : void{ 
+      console.log(this.id_seleccionado);
       let estado=false;
         this.responseData.map((producto:Producto )=> {
        
@@ -67,7 +70,7 @@ export class ListarProductosComponent implements OnInit {
           }
         });
   
-        console.log("🚀 ~ ListarProductosComponent ~ this.productosService.listar_productos ~ responseData:",  this.responseData)
+        //console.log("🚀 ~ ListarProductosComponent ~ this.productosService.listar_productos ~ responseData:",  this.responseData)
       });;
      }
      exportarListaProductos(): void{

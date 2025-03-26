@@ -1,58 +1,66 @@
 <div class="container mt-5">
-    <h2 class="mb-4 text-center">Editar Producto</h2>
-    <form (ngSubmit)="Guarda(productForm)"  #productForm="ngForm">
-      <div class="form-group">
-        <label for="Codigo">Código:</label>
-        <input type="text" class="form-control" id="Codigo" name="Codigo" [(ngModel)]="Codigo" placeholder="Ingrese el código del producto" 
-        required disabled>
-        <div *ngIf="productForm.submitted && !Codigo" class="text-danger">
-          El código es requerido.
-        </div>
+  <h2 class="mb-4 text-center">Editar Producto</h2>
+  
+  <form (ngSubmit)="Guarda(productForm)" #productForm="ngForm">
+    
+    <div class="form-group">
+      <label for="Codigo">Código:</label>
+      <input type="text" class="form-control" id="Codigo" name="Codigo" [(ngModel)]="Codigo"
+        placeholder="Ingrese el código del producto" required disabled>
+      <div *ngIf="productForm.submitted && !Codigo" class="text-danger">
+        El código es requerido.
       </div>
-      <div class="form-group">
-        <label for="Descripcion">Descripción:</label>
-        <input type="text" class="form-control" id="Descripcion" name="Descripcion" [(ngModel)]="Descripcion" placeholder="Ingrese la descripción del producto"
-        required [maxLength]="100">
-         <div *ngIf="productForm.submitted && Descripcion.length > 100" class="text-danger">
-          La descripción no puede superar los 100 caracteres.
-        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="Descripcion">Descripción:</label>
+      <input type="text" class="form-control" id="Descripcion" name="Descripcion" [(ngModel)]="Descripcion"
+        placeholder="Ingrese la descripción del producto" required [maxLength]="100">
+      <div *ngIf="productForm.submitted && Descripcion.length > 100" class="text-danger">
+        La descripción no puede superar los 100 caracteres.
       </div>
-      <div class="form-group">
-        <label for="Stock">Stock:</label>
-        <input type="number" class="form-control" id="Stock" name="Stock" [(ngModel)]="Stock" placeholder="Ingrese la cantidad en stock"
-        min="0" required>
-        <div *ngIf="productForm.submitted && Stock < 0" class="text-danger">
-          El stock no puede ser negativo.
-        </div>
-        <div *ngIf="productForm.submitted && Stock === null" class="text-danger">
-          El stock es requerido.
-        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="Stock">Stock:</label>
+      <input type="number" class="form-control" id="Stock" name="Stock" [(ngModel)]="Stock"
+        placeholder="Ingrese la cantidad en stock" min="0" required>
+      <div *ngIf="productForm.submitted && Stock < 0" class="text-danger">
+        El stock no puede ser negativo.
       </div>
-      <div class="form-group">
-        <label for="Precio">Precio:</label>
-        <input type="number" class="form-control" id="Precio" name="Precio" [(ngModel)]="Precio" placeholder="Ingrese el precio del producto"
-        min="1" required>
-        <div *ngIf="productForm.submitted && Precio < 1" class="text-danger">
-          El precio no puede ser negativo.
-        </div>
-        <div *ngIf="productForm.submitted && Precio === null" class="text-danger">
-          El precio es requerido.
-        </div>
+      <div *ngIf="productForm.submitted && Stock === null" class="text-danger">
+        El stock es requerido.
       </div>
-      <!-- <div class="form-check mb-3">
+    </div>
+
+    <div class="form-group">
+      <label for="Precio">Precio:</label>
+      <input type="number" class="form-control" id="Precio" name="Precio" [(ngModel)]="Precio"
+        placeholder="Ingrese el precio del producto" min="1" required>
+      <div *ngIf="productForm.submitted && Precio < 1" class="text-danger">
+        El precio no puede ser negativo.
+      </div>
+      <div *ngIf="productForm.submitted && Precio === null" class="text-danger">
+        El precio es requerido.
+      </div>
+    </div>
+
+    <!-- <div class="form-check mb-3">
         <input type="checkbox" class="form-check-input" id="Activo" [(ngModel)]="Activo" name="Activo">
         <label class="form-check-label" for="Activo">Activo</label>
       </div> -->
 
-      <div class="form-check mt-3 botonera"> 
-        <button type="submit" class="btn btn-success btn-block">Guardar Producto</button> 
-        <button class="btn btn-primary btn-block" (click)="ir_a_listado()">Ir al listado de productos</button>
+    <div class="form-check mt-3 botonera">
+      <button type="submit" class="btn btn-success btn-block">Guardar Producto</button>
+      <button class="btn btn-primary btn-block" (click)="ir_a_listado()">Ir al listado de productos</button>
     </div>
-    </form>
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
-    </div>
+    
+  </form>
 
-<app-notificacion [mensaje]="successMessage" tipo="exito"></app-notificacion>
-<app-notificacion [mensaje]="errorMessage" tipo="error"></app-notificacion>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
   </div>
+
+  <app-notificacion [mensaje]="successMessage" tipo="exito"></app-notificacion>
+  <app-notificacion [mensaje]="errorMessage" tipo="error"></app-notificacion>
+</div>

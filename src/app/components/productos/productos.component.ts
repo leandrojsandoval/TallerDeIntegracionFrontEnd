@@ -10,22 +10,17 @@ import { Router } from '@angular/router';
 	styleUrls: ['./productos.component.css']
 })
 
-
 export class ProductosComponent {
 
 	errorMessage: string | null = null;
-
 	successMessage: string | null = null;
-
 	Codigo: string = '';
 	Descripcion: string = '';
 	Stock: number = 0;
 	Precio: number = 1;
 	Activo: boolean = true;
 
-
 	constructor(private productosService: ProductoService, private router: Router) { }
-
 
 	ir_a_listado(): void {
 		this.router.navigate(['/Listar_productos']);
@@ -38,7 +33,7 @@ export class ProductosComponent {
 			return;
 		}
 
-		this.errorMessage = null;  // Resetea el mensaje de error antes de realizar la petición
+		this.errorMessage = null;
 		this.successMessage = null;
 
 		const nuevoProducto = {
@@ -60,8 +55,7 @@ export class ProductosComponent {
 			error => {
 				// Manejar el error aquí
 				console.error(error);
-				this.errorMessage = error;  // Asigna el mensaje de error recibido del servicio
-
+				this.errorMessage = error;
 			}
 		);
 	}

@@ -9,19 +9,21 @@ import { VentaService } from 'src/app/services/venta/venta.service';
   templateUrl: './buscar-ventas.component.html',
   styleUrls: ['./buscar-ventas.component.css']
 })
+
 export class BuscarVentasComponent implements OnInit {
   ventas: Venta[] = [];
-  filterForm: FormGroup ;
+  filterForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private ventaService: VentaService,private router: Router
+    private ventaService: VentaService, private router: Router
   ) {
     this.filterForm = this.fb.group({
       startDate: [''],
       endDate: ['']
     });
   }
+
   ngOnInit(): void {
     const today = new Date();
     const lastMonth = new Date(today);
@@ -43,17 +45,18 @@ export class BuscarVentasComponent implements OnInit {
   verDetalle(venta: Venta) {
     // Implementar lógica para ver detalle de la venta
     console.log(venta);
-    this.router.navigate(['/Detalle_Venta/',venta.id]);
+    this.router.navigate(['/Detalle_Venta/', venta.id]);
   }
 
-  exportarVentasActuales() : void{
+  exportarVentasActuales(): void {
 
   }
-  exportarTodasVentas(): void{
+  exportarTodasVentas(): void {
 
-  };   
+  };
 
   formatDate(date: Date): string {
     return date.toISOString().split('T')[0];
   }
+
 }

@@ -9,33 +9,34 @@ import { VentaService } from 'src/app/services/venta/venta.service';
   templateUrl: './ventas.component.html',
   styleUrls: ['./ventas.component.css']
 })
-export class VentasComponent implements OnInit  {
+
+export class VentasComponent implements OnInit {
 
   responseData: any;
   responseventaData: any;
+  LineasVentaproducto: LineaDeVenta[] = [];
+  Exportacion: any[] = [{
+    Codigo: "",
+    Descripción: "",
+    Unidades: 0,
+    Recaudacion: 0,
+  }];
+  Totales: number = 0;
+  LineasVentaproductoSinDuplicados: LineaDeVenta[] = [];
 
-  LineasVentaproducto: LineaDeVenta[] = [] ;
-  constructor(private productosService: ProductoService , private ventaService: VentaService ,private router: Router) { } 
-  Exportacion:any[]=[{
-    Codigo:"",
-    Descripción:"",
-    Unidades:0,
-    Recaudacion:0,
-    }
-  ]
-  Totales:number=0;
-  LineasVentaproductoSinDuplicados: LineaDeVenta[] =[] ; 
+  constructor(private productosService: ProductoService, private ventaService: VentaService, private router: Router) { }
+  
   ngOnInit(): void {
     this.ventaService.listarLineas_venta().subscribe(data => {
       this.LineasVentaproducto = data;
-      this.LineasVentaproductoSinDuplicados= this.LineasVentaproducto.reduce((acumulador: LineaDeVenta[], valorActual: LineaDeVenta) => {
-         this.Totales+=valorActual.subtotal;
+      this.LineasVentaproductoSinDuplicados = this.LineasVentaproducto.reduce((acumulador: LineaDeVenta[], valorActual: LineaDeVenta) => {
+        this.Totales += valorActual.subtotal;
         const elementoYaExiste = acumulador.find(elemento => elemento.producto.codigo.toUpperCase() === valorActual.producto.codigo.toUpperCase());
         if (elementoYaExiste) {
           return acumulador.map((elemento) => {
-           
+
             if (elemento.producto.codigo.toUpperCase() === valorActual.producto.codigo.toUpperCase()) {
-              
+
               return {
                 ...elemento,
                 cantidad: elemento.cantidad + valorActual.cantidad,
@@ -50,67 +51,50 @@ export class VentasComponent implements OnInit  {
       }, []);
       console.log(this.LineasVentaproductoSinDuplicados)
 
-      console.log("🚀 ~ ListarProductosComponent ~ this.productosService.listar_productos ~ responseData:",  this.responseData)
+      console.log("🚀 ~ ListarProductosComponent ~ this.productosService.listar_productos ~ responseData:", this.responseData)
     });
-
-    // this.productosService.listar_productos ().subscribe(data => {
-    //   this.responseData = data;
-    //   console.log("🚀 ~ ListarProductosComponent ~ this.productosService.listar_productos ~ responseData:",  this.responseData)
-    // });
   }
-  // let productoEnLista: Producto = this.venta.productos.filter(x => x.producto.codigo == producto.codigo)
-  // .reduce((acc, curr) => {
-  //     acc.stock += curr.cantidad;
-  //     return acc;
-  // }, { ...producto, stock: 0 });
 
-
-  exportarListaProductos(): void{
+  exportarListaProductos(): void {
     this.Exportacion = this.LineasVentaproductoSinDuplicados.map(linea => ({
       Codigo: linea.producto.codigo,
       Descripción: linea.producto.descripcion,
       Unidades: linea.cantidad,
       Recaudacion: linea.subtotal
     }));
-  
-  const fileContent = this.productosService.tabla_productos_a_string(this.Exportacion, "Código,Descripción,Unidades,Recaudación\n");
-	    const blob = new Blob([fileContent], { type: 'text/plain' });
-	    const url = window.URL.createObjectURL(blob);
-	
-	    const a = document.createElement('a');
-	    a.href = url;
-	    a.download = 'Recaudaciones-de-productos.txt';
-	    document.body.appendChild(a);
-	    a.click();
-	
-	    document.body.removeChild(a);
-	    window.URL.revokeObjectURL(url);
 
-     };  
+    const fileContent = this.productosService.tabla_productos_a_string(this.Exportacion, "Código,Descripción,Unidades,Recaudación\n");
+    const blob = new Blob([fileContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
 
-     exportarListaProductosXLS(): void{
-      this.Exportacion = this.LineasVentaproductoSinDuplicados.map(linea => ({
-        Codigo: linea.producto.codigo,
-        Descripción: linea.producto.descripcion,
-        Unidades: linea.cantidad,
-        Recaudacion: linea.subtotal
-      }));
-		this.productosService.exportar_a_xlsx(this.Exportacion, 'Recaudaciones-de-productos','Productos');
-     }; 
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Recaudaciones-de-productos.txt';
+    document.body.appendChild(a);
+    a.click();
 
-    // exportarListaRecaudacionXLS(): void{
-    //   this.productosService.exportar_a_xlsx(this.LineasVentaproductoSinDuplicados, 'Registro-de-recaudaciones','Recaudacion');
-    //    }; 
-  
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  };
 
-    agregarProducto():void
-     {
-		this.router.navigate(['/Registrar_Productos']);
-     }
-     modificarProducto():void{
+  exportarListaProductosXLS(): void {
+    this.Exportacion = this.LineasVentaproductoSinDuplicados.map(linea => ({
+      Codigo: linea.producto.codigo,
+      Descripción: linea.producto.descripcion,
+      Unidades: linea.cantidad,
+      Recaudacion: linea.subtotal
+    }));
+    this.productosService.exportar_a_xlsx(this.Exportacion, 'Recaudaciones-de-productos', 'Productos');
+  };
 
-     };
-     eliminarProducto() : void{
+  agregarProducto(): void {
+    this.router.navigate(['/Registrar_Productos']);
+  }
 
-     }
+  modificarProducto(): void {
+  };
+
+  eliminarProducto(): void {
+  }
+
 }

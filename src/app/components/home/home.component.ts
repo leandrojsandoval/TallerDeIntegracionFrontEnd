@@ -10,7 +10,7 @@ export class HomeComponent {
 
   responseData: any;
 
-  constructor(private dataService : DataService ) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.dataService.responseData$.subscribe(data => {

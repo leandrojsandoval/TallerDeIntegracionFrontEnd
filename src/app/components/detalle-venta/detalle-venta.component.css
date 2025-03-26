@@ -1,18 +1,18 @@
 .container {
-    margin-top: 20px;
-  }
+  margin-top: 20px;
+}
 
-.Totales label{
+.Totales label {
 
-    color: green;
-    font-size: 1.5rem;
-  }
-  
- .button {
-    margin-right: 20px;
-  }
+  color: green;
+  font-size: 1.5rem;
+}
 
-  .botonera{
-    display: flex;
-    justify-content: space-around;
+.button {
+  margin-right: 20px;
+}
+
+.botonera {
+  display: flex;
+  justify-content: space-around;
 }

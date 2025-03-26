@@ -18,7 +18,8 @@
           <tbody>
             <tr *ngFor="let producto of responseData | filterStock | search:searchText">
               <td>
-                <input type="checkbox" [(ngModel)]="producto.selected" (change)="selectProduct(producto.codigo)" [checked]="isSelected(producto.codigo)">
+                <input type="checkbox" [(ngModel)]="producto.selected" (change)="selectProduct(producto.codigo)"
+                  [checked]="isSelected(producto.codigo)">
               </td>
               <td>{{ producto.codigo }}</td>
               <td>{{ producto.descripcion }}</td>
@@ -50,7 +51,8 @@
           <tbody>
             <tr *ngFor="let producto of responseData | filterNoStock | search:searchText">
               <td>
-                <input type="checkbox" [(ngModel)]="producto.selected" (change)="selectProduct(producto.codigo)" [checked]="isSelected(producto.codigo)">
+                <input type="checkbox" [(ngModel)]="producto.selected" (change)="selectProduct(producto.codigo)"
+                  [checked]="isSelected(producto.codigo)">
               </td>
               <td>{{ producto.codigo }}</td>
               <td>{{ producto.descripcion }}</td>
@@ -69,11 +71,16 @@
 
     <div class="col-md-3 d-flex flex-column justify-content-between botonera">
       <div class="col-md-8">
-        <button type="button" class="btn btn-primary btn-block mb-2" (click)="agregarProducto()">Añadir Producto</button>
-        <button type="button" class="btn btn-primary btn-block mb-2" (click)="modificarProducto()">Modificar Producto</button>
-        <button type="button" class="btn btn-primary btn-block mb-2" (click)="eliminarProducto()">Activar/Desactivar Producto</button>
-        <button type="button" class="btn btn-primary btn-block mb-2" (click)="exportarListaProductos()">Exportar Productos a TXT</button>
-        <button type="button" class="btn btn-primary btn-block mb-2" (click)="exportarListaProductosXLS()">Exportar Productos a XLS</button>
+        <button type="button" class="btn btn-primary btn-block mb-2" (click)="agregarProducto()">Añadir
+          Producto</button>
+        <button type="button" class="btn btn-primary btn-block mb-2" (click)="modificarProducto()">Modificar
+          Producto</button>
+        <button type="button" class="btn btn-primary btn-block mb-2" (click)="eliminarProducto()">Activar/Desactivar
+          Producto</button>
+        <button type="button" class="btn btn-primary btn-block mb-2" (click)="exportarListaProductos()">Exportar
+          Productos a TXT</button>
+        <button type="button" class="btn btn-primary btn-block mb-2" (click)="exportarListaProductosXLS()">Exportar
+          Productos a XLS</button>
       </div>
     </div>
   </div>

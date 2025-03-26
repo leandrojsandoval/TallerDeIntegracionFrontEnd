@@ -1,106 +1,97 @@
-
-    <!-- <p>buscar-ventas</p> -->
+<!-- <p>buscar-ventas</p> -->
 <div class="container">
 
+</div>
+<div class="container">
+  <h2>Registrar Venta</h2>
+  <form [formGroup]="miFormulario" (ngSubmit)="onSubmit()" #ventaForm="ngForm">
+    <div class="form-group col-md-3">
+      <label for="cliente">Nombre del Cliente:</label>
+      <input type="text" id="cliente" class="form-control" name="cliente" [(ngModel)]="cliente"
+        formControlName="cliente" required>
     </div>
-  <div class="container">
-      <h2>Registrar Venta</h2>
-      <form  [formGroup]="miFormulario" (ngSubmit)="onSubmit()" #ventaForm="ngForm" >
-          <div class="form-group col-md-3">
-              <label for="cliente">Nombre del Cliente:</label>
-              <input type="text" id="cliente" class="form-control" name="cliente" [(ngModel)]="cliente" formControlName="cliente" required>
-              <!-- <input type="text" id="cliente" class="form-control" name="cliente" [(ngModel)]="venta.cliente"[ngModelOptions]="{standalone: true}" required> -->
-              <!-- <div *ngIf="ventaForm.submitted && !cliente" class="text-danger">
-                El nombre del cliente es requerido.
-              </div> -->
-            </div>
-          <div class="form-group col-md-6">
-  <div class="row">
-    <div class="col-md-6">
-      <label for="Date">Fecha</label>
-      <input id="Date" type="date" class="form-control" formControlName="Date">
-    </div>
-    <div class="col-md-3">
-      <label for="Time">Hora</label>
-      <input id="Time" type="time" step="1" class="form-control" formControlName="Time">
-    </div>
-    <div class="col-md-2 d-flex align-items-end">
-        <button type="button" class="btn btn-primary" (click)="updateDateTime()">Actualizar</button>
+    <div class="form-group col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="Date">Fecha</label>
+          <input id="Date" type="date" class="form-control" formControlName="Date">
+        </div>
+        <div class="col-md-3">
+          <label for="Time">Hora</label>
+          <input id="Time" type="time" step="1" class="form-control" formControlName="Time">
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+          <button type="button" class="btn btn-primary" (click)="updateDateTime()">Actualizar</button>
+        </div>
       </div>
-  </div>
-</div>
-          <div class="form-group mt-3 col-md-9">
-              <label for="productos">Productos*:</label>
-              <div class="table-responsive">
-                  <table class="table table-bordered">
-                      <thead>
-                          <tr>
-                              <th>Eliminar</th>
-                              <th>Código</th>
-                              <th>Descripción</th>
-                              <th>Precio</th>
-                              <th>Cantidad</th>
-                              <th>Subtotal</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr *ngFor="let item of venta.productos; let i = index">
-                              <td>
-                                  <button type="button" class="btn btn-danger" (click)="eliminarProducto(i)">Eliminar</button>
-                              </td>
-                              <td>{{ item.producto.codigo }}</td>
-                              <td>{{ item.producto.descripcion }}</td>
-                              <td>{{ item.producto.precio | currency }}</td>
-                              <td>{{ item.cantidad }}</td>
-                              <td>{{ item.subtotal | currency }}</td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
-                  <div *ngIf="venta.productos.length==0 " class="text-danger">
-                    Ingrese un producto*.
-                </div>
+    </div>
+    <div class="form-group mt-3 col-md-9">
+      <label for="productos">Productos*:</label>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Eliminar</th>
+              <th>Código</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of venta.productos; let i = index">
+              <td>
+                <button type="button" class="btn btn-danger" (click)="eliminarProducto(i)">Eliminar</button>
+              </td>
+              <td>{{ item.producto.codigo }}</td>
+              <td>{{ item.producto.descripcion }}</td>
+              <td>{{ item.producto.precio | currency }}</td>
+              <td>{{ item.cantidad }}</td>
+              <td>{{ item.subtotal | currency }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="venta.productos.length==0 " class="text-danger">
+        Ingrese un producto*.
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="row">
+        <div class="form-group col-md-10"> <!-- Campo de autocompletado -->
+          <app-autocomplete [(ngModel)]="nombreProducto"
+            (productSelected)="onProductSelected($event)"></app-autocomplete>
+        </div>
+      </div>
+
+      <div class="col-md-6 ">
+        <div class="form-group col-md-3">
+          <input type="text" id="codigoProducto" class="form-control" [(ngModel)]="codigoProducto" name="codigoProducto"
+            [ngModelOptions]="{standalone: true}" disabled="" placeholder="Código">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="cantidadProducto">Cantidad:</label>
+          <input type="number" id="cantidadProducto" class="form-control" [(ngModel)]="cantidadProducto"
+            name="cantidadProducto" [ngModelOptions]="{standalone: true}" min="1" required>
+          <div *ngIf="cantidadProducto<=0" class="text-danger">
+            La cantidad no puede ser menor o igual a Cero.
           </div>
+        </div>
+        <button type="button" class="btn btn-primary mt-4" (click)="agregarProducto()">Agregar Producto</button>
+      </div>
 
-          <div class="row">
-            <div class="row"> 
-                <div class="form-group col-md-10">  <!-- Campo de autocompletado -->
-                <app-autocomplete [(ngModel)]="nombreProducto" (productSelected)="onProductSelected($event)"></app-autocomplete>
-                </div>
-              
+      <div class="col-md-4 ">
+        <div class="bonoteraregistrar Totales">
+          <label for="cantidadProducto">Total a pagar: {{ venta.total|currency }}</label>
+          <button type="submit" class="btn btn-success mt-4">Finalizar Venta</button>
+        </div>
+      </div>
 
-              </div>
-            <div class="col-md-6 ">
-              
-                <div class="form-group col-md-3">
-                <input type="text" id="codigoProducto" class="form-control" [(ngModel)]="codigoProducto" name="codigoProducto"
-                [ngModelOptions]="{standalone: true}" disabled="" placeholder="Código" >
-                </div>
-              <div class="form-group col-md-3">
-                  <label for="cantidadProducto">Cantidad:</label>
-                  <input type="number" id="cantidadProducto" class="form-control" [(ngModel)]="cantidadProducto"
-                    name="cantidadProducto" [ngModelOptions]="{standalone: true}" min="1" required>
-                     <div *ngIf="cantidadProducto<=0" class="text-danger">
-                        La cantidad no puede ser menor o igual a Cero.
-                </div>
-              
-                </div>
-
-                <button type="button" class="btn btn-primary mt-4" (click)="agregarProducto()">Agregar Producto</button>
-              </div>
-           
-            <div class="col-md-4 ">
-              <div class="bonoteraregistrar Totales">  
-                <label for="cantidadProducto">Total a pagar: {{ venta.total|currency }}</label>     
-                <button type="submit" class="btn btn-success mt-4">Finalizar Venta</button>
-              </div>
-            
-             </div>
-         </div>
-      
-         
-      </form>
-      <app-notificacion [mensaje]="successMessage" tipo="exito"></app-notificacion>
-      <app-notificacion [mensaje]="errorMessage" tipo="error"></app-notificacion>
+    </div>
+  </form>
+  <app-notificacion [mensaje]="successMessage" tipo="exito"></app-notificacion>
+  <app-notificacion [mensaje]="errorMessage" tipo="error"></app-notificacion>
 </div>
-

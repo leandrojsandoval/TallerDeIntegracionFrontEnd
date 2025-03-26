@@ -1,47 +1,40 @@
-
-
-
 <div class="container">
   <h2>Reportes de Ventas</h2>
   <div class="row">
     <div class="col-md-9">
-  <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-    <div class="form-group col-md-3">
-      <label for="startDate">Fecha de Inicio</label>
-      <input id="startDate" type="date" class="form-control" formControlName="startDate">
+      <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label for="startDate">Fecha de Inicio</label>
+            <input id="startDate" type="date" class="form-control" formControlName="startDate">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="endDate">Fecha de Fin</label>
+            <input id="endDate" type="date" class="form-control" formControlName="endDate">
+          </div>
+          <button type="submit" class="btn btn-primary col-md-3">Filtrar</button>
+        </div>
+      </form>
+      <table class="table table-striped mt-4" *ngIf="ventas.length >= 0">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Total</th>
+            <th>Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let venta of ventas">
+            <td>{{ venta.fecha | date: 'short' }}</td>
+            <td>{{ venta.cliente }}</td>
+            <td>{{ venta.total | currency }}</td>
+            <td><a class="btn btn-info" [routerLink]="['/Detalle_Venta', venta.id]" target="_blank">Ver Detalle de
+                Venta</a></td>
+            <!-- <td><button class="btn btn-info" (click)="verDetalle(venta)">Ver Detalle</button></td> -->
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="form-group col-md-3">
-      <label for="endDate">Fecha de Fin</label>
-      <input id="endDate" type="date" class="form-control" formControlName="endDate">
-    </div>
-    <button type="submit" class="btn btn-primary col-md-3">Filtrar</button>
-  </div>
-  </form>
-
-  <table class="table table-striped mt-4" *ngIf="ventas.length >= 0">
-    <thead>
-      <tr>
-        <th>Fecha</th>
-        <th>Cliente</th>
-        <th>Total</th>
-        <th>Detalle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let venta of ventas">
-        <td>{{ venta.fecha | date: 'short' }}</td>
-        <td>{{ venta.cliente }}</td>
-        <td>{{ venta.total | currency }}</td>
-        <td><a  class="btn btn-info" [routerLink]="['/Detalle_Venta', venta.id]" target="_blank">Ver Detalle de Venta</a></td>
-        <!-- <td><button class="btn btn-info" (click)="verDetalle(venta)">Ver Detalle</button></td> -->
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-  
-   
   </div>
 </div>
-

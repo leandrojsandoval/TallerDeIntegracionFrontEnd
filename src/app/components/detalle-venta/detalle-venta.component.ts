@@ -9,31 +9,32 @@ import * as XLSX from 'xlsx';
   templateUrl: './detalle-venta.component.html',
   styleUrls: ['./detalle-venta.component.css']
 })
+
 export class DetalleVentaComponent implements OnInit {
   venta: Venta = {} as Venta;
-  Totales:number=0;
-  lineasVenta: LineaDeVenta[]=[];
-  LineasVentaproductoSinDuplicados: LineaDeVenta[] =[] ; 
+  Totales: number = 0;
+  lineasVenta: LineaDeVenta[] = [];
+  LineasVentaproductoSinDuplicados: LineaDeVenta[] = [];
 
   constructor(private activatedRoute: ActivatedRoute, private ventasService: VentaService) { }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       const ventaId = params['id'];
-  
-      this.ventasService.getVentaPorIdVenta(ventaId) .subscribe(data => {
+
+      this.ventasService.getVentaPorIdVenta(ventaId).subscribe(data => {
         this.venta = data;
-  
-     console.log(data)
+
+        console.log(data)
 
       });
       this.ventasService.getLineaVentaPorIdVenta(ventaId)
-      .subscribe(lineasVenta => {
-        this.lineasVenta = lineasVenta;
-        
-      this.obtenerListadosUnficados();
-     console.log(this.LineasVentaproductoSinDuplicados)
+        .subscribe(lineasVenta => {
+          this.lineasVenta = lineasVenta;
 
-      });
+          this.obtenerListadosUnficados();
+          console.log(this.LineasVentaproductoSinDuplicados)
+
+        });
 
     });
   }
@@ -60,10 +61,11 @@ export class DetalleVentaComponent implements OnInit {
       }
     }, []);
   }
+
   exportarDatos(): void {
     const datosVenta = `Fecha: ${new Date(this.venta.fecha).toLocaleString()}\nCliente: ${this.venta.cliente}\n`;
     const encabezado = `Código\tDescripción\tUnidades Vendidas\tRecaudacion\n`;
-    const datosProductos = this.LineasVentaproductoSinDuplicados.map(prod => 
+    const datosProductos = this.LineasVentaproductoSinDuplicados.map(prod =>
       `${prod.producto.codigo}\t${prod.producto.descripcion}\t${prod.cantidad}\t${prod.subtotal}\n`
     ).join('');
     const totalRecaudado = `Total Recaudado: ${this.Totales}\n`;
@@ -77,6 +79,7 @@ export class DetalleVentaComponent implements OnInit {
     a.click();
     window.URL.revokeObjectURL(url);
   }
+
   exportarDatosXLSX(): void {
     const worksheetData = [
       ['Fecha', new Date(this.venta.fecha).toLocaleString()],
@@ -102,4 +105,5 @@ export class DetalleVentaComponent implements OnInit {
     a.click();
     window.URL.revokeObjectURL(url);
   }
+  
 }

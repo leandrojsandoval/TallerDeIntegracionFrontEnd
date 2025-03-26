@@ -1,7 +1,9 @@
 <div class="container mt-5">
   <div class="row">
+    
     <div class="col-md-9">
       <h2 class="mb-4 ">Recaudación por Producto</h2>
+      
       <div class="table-responsive" style="max-height: 24rem; overflow-y: auto;">
         <table class="table table-bordered table-hover table-striped">
           <thead class="thead-dark">
@@ -17,29 +19,30 @@
               <!-- <div *ngIf="producto.activo"> -->
               <td>{{ registrosproducto.producto.codigo }}</td>
               <td>{{ registrosproducto.producto.descripcion }}</td>
-              <td>{{ registrosproducto.cantidad }}    </td>
-              <td>{{  registrosproducto.subtotal| currency:'ARS ' }}</td>
+              <td>{{ registrosproducto.cantidad }} </td>
+              <td>{{ registrosproducto.subtotal| currency:'ARS ' }}</td>
               <!-- </div> -->
             </tr>
           </tbody>
         </table>
       </div>
 
-      
       <div class="col-md-8 ">
-        <div class="Totales">  Total Recaudado: 
-          <label for="cantidadProducto">{{ Totales|currency }}</label>     
+        <div class="Totales"> Total Recaudado:
+          <label for="cantidadProducto">{{ Totales|currency }}</label>
         </div>
-      
-       </div>
+      </div>
+
     </div>
 
     <div class="col-md-3 d-flex flex-column justify-content-between botonera">
       <div class="col-md-8">
-       <button type="button" class="btn btn-primary btn-block  mb-2" (click)="exportarListaProductos()">Exportar Recaudación a TXT</button>
-       <button type="button" class="btn btn-primary btn-block  mb-2" (click)="exportarListaProductosXLS()">Exportar Recaudación a XLS</button>
-
+        <button type="button" class="btn btn-primary btn-block  mb-2" (click)="exportarListaProductos()">Exportar
+          Recaudación a TXT</button>
+        <button type="button" class="btn btn-primary btn-block  mb-2" (click)="exportarListaProductosXLS()">Exportar
+          Recaudación a XLS</button>
+      </div>
     </div>
-        </div>
+
   </div>
 </div>
